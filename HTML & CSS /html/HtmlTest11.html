@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>CSS Settings</title>
+
+<meta charset="UTF-8" />
+
+<style>
+	.Highlight {
+		font-weight: bold;
+		color: red;
+		font-size: 1.3em;
+		opacity: 0.5;
+	}
+	
+	DIV {
+		margin-top: 10px; 
+	}
+</style>
+
+
+<script type="text/javascript">
+</script>
+
+</head>
+
+<body>
+
+	<h3 style="margin-top: 50px;">Position Setting</h3>
+
+	<div>
+		1) This is <span style="position: static" class="Highlight" >static</span> position.
+	</div>
+	<div>
+		2) This is <span style="position: relative; top: -15px; "  class="Highlight" >relative</span> position. 
+		The element's place is reserved. The left/top/right/bottom values are w.r.t. the static position of this element. And any non-zero value indicates a shift.
+		The default values of left and right are zero w.r.t. its static position. 
+		It doesn't change the positions of other elements around it, look at <span style="position: relative; top: 10px; left: 20px; "  class="Highlight" >this</span>. 
+		This shifted "this" word to bottom right.
+	</div>
+	<div style="border: 1px solid gray; height: 250px; ">
+		3) This is <span style="position: absolute; right: 0; top: 50px;" class="Highlight" >absolute-body</span> position, which is positioned w.r.t. the body. 
+		So all the left/top/right/bottom are relative to the entire page body. Here the element is position at top right corner of the body.  
+		The element's place is NOT reserved, which means next word starts as if this element didn't exist.
+		The default values of left and top are NOT zero instead their defaulted to the current static position of the element if it were present.
+	
+		<div style="border: 1px solid gray; height: 150px; background-color: yellow; position: relative;">
+			<div style="border: 1px solid gray; height: 100px; background-color: gray;">
+				This is <span style="position: absolute; right: 0; bottom: 0;" class="Highlight" >absolute-parent</span> position, which is positioned w.r.t. the
+				immediate element in the parent hierarchy which has "position" property overridden (with a value other than "static"). 
+				Here, the element in the parent hierarchy which has "position" property overridden is yellow box. So it's position at bottom 
+				right corner of the yellow box. 
+			</div>
+		</div>	
+	</div>
+	<br><br><br><br>
+	<div style="margin-top: 40px;">  <!-- this margin is required otherwise the bottom portion of the page content will overlap with the footer -->
+		<div style="text-align: center; background-color: #cccccc; position: fixed; left: 0; bottom: 0; width: 100%;">
+			<ul style="list-style-type: none; margin: 0; padding: 0;">
+				<li style="display: inline; "><a href="#">Custom Relations</a></li>
+				<li style="display: inline; padding-left: 20px;"><a href="#" >Contact Us</a></li>
+			</ul>
+		</div>
+	</div>	
+</body>
+
+</html>

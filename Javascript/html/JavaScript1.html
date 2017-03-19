@@ -1,0 +1,56 @@
+<html>
+
+<head>
+	<title>JavaScript</title>
+	
+	<script type="text/javascript">
+	var c= 10;
+	
+	function func1() {
+		//local variable is defined using "var" keyword, which is visible only within the block (that could be a function or a loop or a condition)
+		// so the local variable "a" is invisible in func2()
+		var a = 10;
+
+		alert("func1: a=" + a) ;
+		
+		//if you omit "var" keyword the variable becomes global, i.e. it's visible across other functions and blocks
+		b = 5;
+
+		c= c + 2;
+		alert("func1: c=" + c);
+	}
+
+	function func2() {
+		try {
+			a = a+10;
+			alert("func2, a= "+ a);
+		} catch(ex) {
+			alert("func2 a-Error: " + ex.message) ;
+		}
+
+		b = b*5 ;
+		alert("func2() , b=" + b) ;
+	}
+
+	func1();
+	func2();
+	
+	b = b*2;
+	alert("b = " + b)
+	
+	
+	
+	</script>
+	
+	<style type="text/css">
+		
+	</style>
+	
+</head>
+
+<body>
+	<h1>JavaScript fundamentals</h1>
+	
+</body>
+
+</html>

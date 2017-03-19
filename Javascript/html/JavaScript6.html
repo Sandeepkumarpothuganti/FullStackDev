@@ -1,0 +1,202 @@
+<html>
+
+<head>
+<title>JavaScript</title>
+	
+<script type="text/javascript">
+
+	function init() {
+		testBubblingVeto();
+
+		//to check if user is hitting ENTER key (i.e. keycode = 13)
+		var txt = document.getElementById("txt") ;
+		
+		txt.addEventListener("keypress", function(e) {
+			if(e.keyCode == 13) {
+				alert('ENTER key pressed');
+				return ;
+			}
+		});
+	}
+	
+	function testBubbling() {
+		/*
+		* Event handling is performed in two steps:
+		* 1) The event propagates from top to bottom of the DOM tree (the DOM elements involved in the mouse click area(coordinates)).
+		* 	This is called "capture" phase where it captures all the registered event handles starting from top thru bottom. In this stage
+		* 	it'll fire all those event handlers that are registered for "capture" phase but it doesn't fire other event handlers that are not meant to be fired
+		* during capture phase.
+		* 2) In the second stage, which is called "bubbling" phase where it starts firing all those event handlers that are meant to
+		* be fired during "bubbling" phase i.e. non-capture phase. 
+		*
+		*3) here's the syntax of event registration: 
+		* 		element.addEventListener(eventName, fnHandler, isCapturePhase) ;
+		* Here, the 3rd parameter decides whether to fire the event handler during capture phase or not. By default if you
+		* ommit this parameter then its value will become false, indicating that it won't be fired during capture phase but
+		* fired during bubbling phase. You need to pass "true" explicitly to fire it during capture phase.
+		*/
+
+		/*
+		In the following example, DocumentBody and ButtonContainer are registered to be fired during "capture" phase
+		whereas the button and panel are registred to be fired during "non-capture"/"bubbling" phase.
+		so the event propagates as: 
+				1) Capture Phase (top to buttom): Document Body[true] ->Panel -> Button Container[true] -> Button
+				2) Bubbling Phase (bottom to top): Button[true] -> Button Container -> Panel[true] -> Document Body 
+		*/
+		var button = document.getElementById("btn");
+	
+		var panel = document.getElementById("panel") ;
+		panel.addEventListener("click", function() {
+				alert("Panel clicked");
+		}) ;
+
+		button.addEventListener("click", function() {
+			alert("Button Clicked");
+		}) ;
+	
+		var cont = document.getElementById("buttonContain") ;
+		cont.addEventListener("click",  function(){
+			alert("Button Container clicked");
+		}, true);
+
+		document.body.addEventListener("click", function() {
+			alert("Document clicked");
+		}, true);
+	}
+
+	function testBubblingVeto() {
+		document.body.addEventListener("click", function() {
+			alert("Document clicked");
+		});
+				
+		var chkPanel = document.getElementById("chkPanel") ;
+		chkPanel.addEventListener("click", function(e) {
+				alert("Checkbox Panel clicked") ;
+			} ) ;
+		
+		var chk = document.getElementById("chk") ;
+		chk.addEventListener("click", function(e) {
+				if(confirm("Disable checking the box (this continues event bubbling)")) {
+
+					//in order to prevent default action associated with the checkbox click (i.e. checking the box)
+					e.preventDefault();
+					
+					//or you can also say window.event.preventDefault();
+					
+					/*
+					--- Old Browsers ---
+					e.returnValue = false ;
+					*/
+					
+				} else if(confirm("Do you want to cancel bubbling")) {
+					//in order to cancel the event bubbling use the following
+					e.stopPropagation();
+					
+					/*
+					---  Old browsers --
+							e.cancelBubble = true;
+							return false;
+					*/
+				}
+		}) ;
+
+	}
+
+	/* here, the person is an object because there's no instantion needed */
+	var person = {
+		name: "Tom",
+		
+		sayName: function() {
+			alert(this.name) ;
+		}
+	} ;
+
+	/* here, the Car is a class and needs to be instantiated to access its props and methods*/
+	var Car = function(name) {
+		this.name = name;
+		
+		this.start = function() {
+				alert("Vrooom") ;
+			} ;
+	} ;
+	
+	function testObjects() {
+		alert(person.name) ;
+
+		var car = new Car("Benz") ;
+		alert(car.name) ;
+		car.start();
+	}
+	
+	
+	function testEvents() {
+		var button = document.getElementById("btn");
+
+		//the event name is case-sensitive "onclick" all lower case, 
+		//"onclick" is a callback function that is invoked when the button is clicked, it's a single callback
+		button.onclick = function() {
+			alert("Time is: " + new Date());
+		}
+
+		//to add an event listener, you can use following syntax, you can register multiple event handlers
+		button.addEventListener("click", function() {
+			alert("First: " + Math.random()*10);
+		}) ;
+
+		button.addEventListener("click", function() {
+			alert("Second: " + Math.random()*10);
+		}) ;
+	}
+	
+	function looping() {
+		var data = {
+					name: "Ryan",
+					age: 10,
+					interests: ["gaming", "playing"]
+				} ;
+
+		//to iterate thru object's properties and corresponding values use the following for loop
+		for(var prop in data) {
+			console.log(prop + " = " + data[prop]);
+		}
+
+		//iterate thru an array
+		var skills = ["java", "css", "html"] ;
+		
+		for(var i =0; i < skills.length; i++) {
+			console.log("skills[" + i + "] = " + skills[i]);
+		}
+
+		//var numbers = [] ;
+		var numbers = new Array() ;
+		for(var i = 0; i < 10; i++) {
+			numbers.push(Math.ceil(Math.random()*100)) ;
+		}
+
+		console.log(numbers);
+	}
+
+	
+</script>
+	
+</head>
+
+<body onload="init()">
+	<h1>JavaScript fundamentals</h1>
+	
+	<div id="panel" style="border: 1px solid red; padding: 20px; ">
+		<div id="buttonContain" style="background-color: gray; padding: 20px;">
+			<button type="button" id="btn">What is Time now</button>
+		</div>
+	</div>
+	
+	<div id="chkPanel" style="margin: 10px; border: 1px solid red; padding: 20px; ">
+		Try to click the checkbox, and it won't let you check it:
+		<input type="checkbox" id="chk">
+		<br>
+		<input type="text" id="txt">
+	</div>
+	
+</body>
+
+</html>

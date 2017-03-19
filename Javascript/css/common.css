@@ -1,0 +1,12 @@
+body, select, button, input {
+	font-family: tahoma;
+	font-size: 12px;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+a, a:visited {
+	color: blue;
+}

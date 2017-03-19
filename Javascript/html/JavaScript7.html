@@ -1,0 +1,135 @@
+<html>
+
+<head>
+<title>JavaScript</title>
+	
+<script type="text/javascript">
+
+	var person =  {
+			name: "Jill",
+
+			whoAreYou: function() {
+				return this.name;
+			}
+	} ;
+
+	function whoAmI() {
+		return this.name ;
+	}
+	
+	function testThis() {
+		//here the this.name shows "Jill"
+		alert("person-Who are you: " + person.whoAreYou()) ;
+
+		//here the this.name doesn't show "Jill" because you're assinging function definition to a variable but not the object itself
+		// and invoking it. Here, the "fn" function variable is exactly same as "whoAmI" function definition and the containing object is lost.
+		var fn = person.whoAreYou ;
+		alert("fn: Who Are you: " + fn()) ;
+
+		alert("Who Am I: " + whoAmI());
+		
+	} ;
+
+	var Controller = {
+		value: null,
+		
+		generateRandom: function() {
+			this.value = Math.round(Math.random() * 100) ;
+		},
+		
+		echoRandom: function() {
+			return alert(" Value: " + this.value) ;
+		},
+
+		register: function() {
+			var text = document.getElementById("clickMe");
+
+			//here we're assigning the function definition to the onclick, but we're not actually passing any context
+			text.addEventListener("click", this.echoRandom) ;
+
+			//the above function handler is exactly similar to "echoMe()" handler
+			//		btn.addEventListener("click", echoMe) ;
+			
+		}
+	} ; 
+
+	function echoMe() {
+		return alert("Value: " + this.value) ;
+	}
+	
+	function init() {
+		//now register event handler
+		Controller.register();
+
+		Controller.generateRandom();
+		Controller.echoRandom();
+		
+		//now click the textbox and see the value, here "this" in the echoRandom() event handler points to the textbox object but not the Controller object
+		//so it'll not echo the random value instead it echoes the textbox value whatever is typed
+
+	}
+
+	function sayName() {
+		return this.name;
+	}
+
+	function Car(name) {
+		this.name = name ;
+
+		this.sayName = function() {
+			alert("My Name is: " + this.name) ;
+		} ;
+
+		this.increaseSpeed = function(speed, rpm) {
+			alert("My speed is now: " + speed + ", rpm: " + rpm);
+		}
+	}
+	
+	function testCall()  {
+		var car = new Car("Nissan");
+
+		/* The following indicates  invocation of object's method. Here the object context is the "car" object itself */
+		car.sayName();
+
+		/*The following indicates invoking a arbitrary function whose definition is defined under car.sayName function.
+		Here, there's no object context. 
+		*/
+		car.sayName.call() ;
+
+		//so in order to pass object context, the call() method takes the context as a first parameter
+		//	syntax: method.call(context, param1, param2,...)
+		//here in the following example, the first parameter indicates the "car" object context
+		car.sayName.call(car) ;
+
+		//the following is same as above
+		var fn = car.sayName;
+		fn.call(car);
+		
+		car.increaseSpeed.call(car, 65, 5000); //2nd and 3rd parameters indicate the parameters for the function "increaseSpeed"
+
+		//alternative to "call()" method you can also use "apply()" method where the target method arguments are passed as an array instead of as separate parameters in the "call" method
+		car.increaseSpeed.apply(car, [75, 4000] ) ;
+	
+
+		//the following will not display any name since the object is not present
+		alert("Name1: " + sayName.call());
+
+		///now let's pass context object
+		var s = new sayName();
+		s.name = "Krish" ;
+		
+		alert("Name2: " + sayName.call(s) ) ;
+		
+	}
+	
+</script>
+	
+</head>
+
+<body onload="init()">
+	<h1>JavaScript fundamentals</h1>
+	
+	<input type="text" id="clickMe"  value="Ryan">	
+</body>
+
+</html>

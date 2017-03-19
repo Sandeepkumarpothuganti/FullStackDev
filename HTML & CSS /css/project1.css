@@ -1,0 +1,110 @@
+.SortAsc {
+	background-image: url(../images/sort_asc.gif);
+	background-repeat: no-repeat;
+	background-position: 100% 100%; /* (x y):  position at right bottom corner*/
+}
+
+.SortDesc {
+	background-image: url(../images/sort_desc.gif);
+	background-repeat: no-repeat;
+	background-position: 100% 100%; /* (x y):  position at right bottom corner*/
+}
+
+.PersonDetails {
+	margin-top: 10px; 
+	border: 1px solid #cccccc; 
+	padding: 20px;
+}
+
+.PersonDetails > div+div{
+	margin-top: 5px;
+}
+
+.PersonDetails label {
+	display: inline-block; /* needed in order to apply width property */
+	width: 100px;
+	font-weight: bold;
+}
+
+/* in between DIV tags (immediate children only) under SearchCriteria maintain some gap */
+.SearchCriteria > DIV + DIV{
+	margin-top: 5px;
+}
+
+/*
+* all LABEL elements under "SearchCriteria" : apply fixed width so that they appear aligned 
+*/
+.SearchCriteria label {
+	display: inline-block; /* needed in order to apply width property */
+	width: 100px;
+	font-weight: bold;
+}
+
+.SearchCriteria {
+	border: 1px solid gray;
+	padding: 10px;
+}
+
+.SearchResults {
+	margin-top: 20px;
+} 
+
+.Sortable {
+	text-decoration: underline;
+	cursor : pointer;
+}
+
+.SearchCriteria,
+.SearchResults ,
+.PersonDetails {
+	width: 500px;
+	box-sizing: border-box;  /* make sure the padding is part of the width */
+}
+
+.Grid tbody TR.RowHighlight {
+	background-color: yellow	!important ; /* here, "!important" command indicates to override the precedence*/
+}
+
+table.Grid {
+	width: 100%;
+	display: block;
+}
+
+.Grid tbody tr:nth-child(odd){
+	background-color: white; 
+}
+
+.Grid tbody tr:nth-child(even){
+	background-color: #cccccc; 
+}
+
+/* header cell */
+table.Grid  thead th {
+	font-size: 12px;
+	font-weight: bold;
+	text-align: center;
+	background-color: #0db9f2	;
+	border: 1px solid gray;
+	color: black;
+	padding: 2px 4px;
+}
+
+/* Data cell */
+table.Grid td {
+	font-size: 12px;
+	border: 1px solid gray;
+	padding: 1px 2px;
+}
+
+table.Grid th:nth-child(1) {
+	width: 70px;
+}
+
+table.Grid th:nth-child(3) {
+	width: 70px;
+}
+
+table.Grid td:nth-child(1),
+table.Grid td:nth-child(3) {
+	text-align: center;
+}

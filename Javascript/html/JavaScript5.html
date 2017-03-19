@@ -1,0 +1,77 @@
+<html>
+
+<head>
+<title>JavaScript</title>
+	
+<script type="text/javascript">
+
+	//let's create a static function, here we're using just a JSON data format where the value is a function .
+	var Controller = {
+			abs: function(value) {
+					return Math.abs(value) ;
+			},
+
+			round: function(value) {
+				return Math.round(value) ;
+			},
+
+			getPersons : function() {
+				return DataService.getPersons();
+			}
+	} ;
+
+	var DataService = {
+			getPersons: function() {
+				return [{name: "Jill", age: "10"}, {name: "Tim", age: "15"}];
+			}
+	} ;
+	
+	function init() {
+		alert(Controller.abs(-100));
+		alert(Controller.round(10.4732));
+		alert(Controller.getPersons()) ;
+		
+		//creating an object
+		var obj = new Object();
+		obj.name = "Joo" ;
+		alert(obj.name) ;
+
+		//anther way of creating an object
+		var params = {};
+		params.name = "Tim";
+		alert(params.name);
+
+		
+		//JSON: JavaScript Object Notation
+		//Format: {key1: value1, key2: value2,...}
+		//where key1 is name of the attribute,optionally enclosed in quotes. and value1 is either a simple value or array or another JSON object, or a function
+
+		//here's an example of JSON data, which is an object (not a function/class)
+		var data = {
+				name: "Ryan",
+				age: 10,
+				"primary skills": ["Java", "HTML"],
+				siblings: [
+									{name: "Jack", age: 10},
+									{name: "Jill", age: 15}
+							]
+			}; 
+
+		//data reference
+		alert(data.name);
+		alert(data["age"]);
+		alert(data["primary skills"]);
+
+	} ;
+
+	
+</script>
+	
+</head>
+
+<body onload="init()">
+	<h1>JavaScript fundamentals</h1>
+	
+</body>
+
+</html>

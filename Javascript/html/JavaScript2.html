@@ -1,0 +1,136 @@
+<html>
+
+<head>
+<title>JavaScript</title>
+	
+<script type="text/javascript">
+
+	function initMe() {
+		/*
+		Some built-in classes : 
+				new Date(), 
+				new String(), 
+				new Array(), 
+				new RegEx(), 
+				Math.abs(), 
+				Math.ceil(), 
+				Math.floor(), 
+				Math.round()
+		*/
+
+		/** display time on the UI **/
+		//first get a reference to the UI element 
+		
+		// DOM: Document Object Model
+		var timeObj = document.getElementById("time");
+		
+		// get date using new Date(), and assign value using obj.innerHTML, or obj.innerText
+		// obj.innerText can dispaly the string value as is , i.e. it doesn't interpret any HTML tags
+		// whereas obj.innerHTML can interpret the HTML markup present in the string and rendered appropriately
+		timeObj.innerHTML = "Now the time is <span style='font-weight: bold; color: blue;'>" + new Date() + "</span>" ;
+
+		testObject();
+		
+		var t = new testAnother();
+	}
+
+	function Person(name, age) {
+		var counter = 0;
+
+		this.name = name;
+		this.age = age ;
+		
+		this.sayName = function() {
+			alert(this.name) ;
+		} ;
+
+		/*
+		* Define a local variable, which is visible within this function only. This should take precedence over any global variable with the same name
+		*/
+		
+		this.countMe = function() {
+			counter++;
+			alert("You called me: " + counter + " time(s)");
+		};
+
+		this.sayDob = function() {
+			//this.dob is undefined within this Person class howerver it's added from outside
+			alert("SayDOB: " + this.dob) ;
+		};
+
+		this.sayPlace = function() {
+			//this will fail since this.place is not same as Person.place
+			alert("sayPlace: " + this.place) ;
+		} ;
+	}
+
+	function testObject() {
+		var p = new Person("Ryan", 10);
+		p.sayName();
+		// alert(p.counter); //invalid since counter is a local variable within the Person function
+		p.countMe();
+		p.countMe();
+
+		//add a new instance variable dynamically as follows:
+		p.dob = "10/10/10";
+		p.sayDob();
+
+		//add a static variable
+		Person.place = "NJ" ;
+		Person.sayPlace = function() {
+			alert("Person.sayPlace: " + Person.place) ;
+		};
+		
+		alert("Place1: " + Person.place) ;
+		alert("Place2: " + p.place) ; //this won't work since static variables have to be referenced using class but not against object.
+		Person.sayPlace() ;
+	}
+
+	function testAnother() {
+		var counter= 0 ;
+	
+		// you can define an anonymous function and invoke it in one shot
+		//this is now acting as a constructor.
+		//Format: (functionDef)();
+		// where functionDef is "function(){...}" 
+		(function() {
+			//add some complex code here
+			var furtherInit = function() {
+				counter = Math.random();
+			} ; 
+
+			furtherInit();
+			
+			counter = 10*counter;
+		}) () ;
+
+		// you can define another nested function and invoking it
+		callMe() ;
+		
+		function callMe() {
+			alert("I'm called");
+		};
+
+		//you can also define a local function similar to a local variable as below
+		var fun = function() {
+			alert("fun") ;
+		};
+
+		fun();
+
+		this.testMe = function() {
+			alert("tested");
+		}
+	}
+	
+</script>
+	
+</head>
+
+<body onload="initMe()">
+	<h1>JavaScript fundamentals</h1>
+	
+	<span id="time"></span>
+</body>
+
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>JQuery Basics</title>
+
+<script type="text/javascript" src="../../js/jquery/jquery-3.1.1.js"></script>
+
+<meta charset="UTF-8" />
+
+<style>
+	p.fontStyle {
+		font-size: 12px;
+		font-family: tahoma;
+	}
+</style>
+
+<script type="text/javascript">
+
+	$(document).ready(function() {
+
+		$(document).click(function() {
+			console.log("Document clicked");
+
+			//hide/unhide all buttons that have "dynamic" class name, follow the CSS selector syntax
+			var buttons = $("button.dynamic");
+			buttons.each(function(index, elem) {
+				// "this" always represents the current element, i.e. "elem" parameter here
+				$(this).toggle();
+			}) ;
+		});
+
+		// get all the "p" elements using the CSS selector syntax
+		var paras = $("p") ;
+		paras.each(function(index, elem) {
+			console.log("Paragraph[" + index +"].id = " + elem.id)
+		});
+
+		//get first jquery node using .eq(index) syntax
+		var jqp = paras.eq(0) ;
+		jqp.addClass("fontStyle") ;
+		console.log("p2 ID=" + jqp.id);  //undefined
+
+		//instead get the DOM node from jquery node using [0]
+		var p2 = jqp[0] ;
+		console.log("p2 ID=" + p2.id);
+
+		//alternatively u can get first DOM node using array syntax
+		p2 = paras[0] ;
+		console.log("p2 ID=" + p2.id);
+
+		//from DOM node u can jquery using $
+		$(p2).css("color", "blue");
+		$(p2).css({
+			"font-weight": "bold",
+			"border": "1px gray solid"
+		});
+
+		// create a new list equivalent to document.createElement("ul") ;
+		var list = $("<ul>") ;
+		var li = $("<li>");
+		li.html("Orange");
+		list.append(li) ;
+
+		li = $("<li>") ;
+		li.html("Apple") ;
+		li.attr("favorite", "true");
+		list.append(li) ;
+
+		li = $("<li>") ;
+		li.html("Pear") ;
+		list.append(li) ;
+
+
+		li = $("<li>") ;
+		li.html("Dummy") ;
+		list.append(li) ;
+		
+		//add it to the document body, append is available on jquery collection not jquery element
+		$("body").append(list) ;
+
+		//verify back
+		list = $("ul").eq(0) ;
+		//.html() method also acts as a getter method when you don't pass any argument
+		var listHtml = list.html();  //.html() => .innerHTML  
+		console.log("UL innerHTML: " + listHtml);
+
+		//now get last element in the list
+		//first get "ul" collection and within the collect find "li" elements
+		// $("ul").find("li") is same as CSS selector "ul > li"
+		var lastLi = $("ul").find("li").last();
+		lastLi.text(lastLi.text() + "-1");
+		console.log("Last Option text: " + lastLi.text()) ;  //.text() => .innerText
+
+		//now filter for UL's LI elements that have "favorite" attribute, follow the CSS selector syntax
+		var selectedLi = $("ul > li").filter("[favorite]");
+		//instead you can simply says : selectedLi = $("ul > li[favorite]")
+		console.log("Favorite LI: " + selectedLi.html() + "; favorite value: " + selectedLi.attr("favorite")) ;
+
+		//set the textbox value
+		$("#name").val("HTML") ;
+
+		//event registration you can use either ".click(fn)" or .on("click", fn) variations.
+		$( 'input[type="checkbox"]' ).on("click", function() {
+			console.log("Checked: " + this.checked);
+		});
+
+		//remove last element in the list
+		var removedLi = $("ul li").last().remove();
+		console.log("Last Element Removed: "+ removedLi.html()); 
+
+		$("p").filter(".Big").each(function(index, elem) {
+			console.log(" 1-Paragraph.Big=" + elem.id);
+		});
+
+		//alternatively
+		var p = $("p").filter(function() {
+			return $(this).hasClass("Big");
+		}).each(function(index, elem) {
+			console.log(" 2-Paragraph.Big=" + elem.id);
+		});
+
+		var li = $("ul li:eq(1)") ;
+		console.log("First list item: " + li.html());
+
+		li = $("ul li:last") ;
+		console.log("Last list item: " + li.html());
+
+		//returns all the form input elements, not same as INPUT tag
+		$(":input").each(function(index, el) {
+			console.log("Input: " + el.id);
+		});
+
+		// remove paragraph that has Big class
+		console.log("Paragraph.Big removed");
+		$("p").remove(".Big") ; 
+
+		var items = $("ul").children("[favorite]");
+		for(var i = 0; i < items.length; i++) {
+			console.log("Favorite: " + items[i].innerHTML);
+		}
+
+		var links = new Array();
+		$("a").each(function(index, elem) {
+			links.push($(this).attr("href")) ;
+		});
+
+		console.log("All links: " + links);
+		
+	}) ;
+</script>
+
+</head>
+
+<body>
+
+	<h1>Changing Weather</h1>
+
+	<p id="p1">
+		Massive Antarctica ice sheet is cracking due to warming oceans.
+	</p>
+	
+	<p id="p2" class="Big">
+		Hola, this is second paragraph.
+	</p>
+	
+	<a href="http://www.microsoft.com">Microsoft</a>
+	<a href="http://www.google.com">Google</a>
+		
+	<input type="text" id="name" value="">
+	<input type="checkbox" id="chk">
+	
+	<button type="button" class="dynamic" id="btn1">Dynamic Button</button>
+	<button type="button" id="btn2">Static Button</button>
+</body>
+
+</html>

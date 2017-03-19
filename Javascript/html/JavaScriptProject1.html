@@ -1,0 +1,59 @@
+<html>
+
+<head>
+<title>JavaScript Project</title>
+
+	<link rel="stylesheet" href="../css/common.css" />
+	<link rel="stylesheet" href="../css/project1.css" />
+	
+	<script type="text/javascript" src="../js/PersonGrid.js" ></script>
+	<script type="text/javascript" src="../js/project1.js" ></script>
+</head>
+
+<body onload="App.init()">
+	<h1>JavaScript Project</h1>
+	
+	<div id="searchCriteria" class="SearchCriteria">
+		<p style="font-weight: bold; color: blue; margin-top: 0;">
+			Please enter search criteria and click Submit
+		</p>
+		<div>
+			<label id="textLabel">Search Text</label>
+			<input type="text" id="searchKeyword" maxlength ="100" size="15">
+		</div>
+		<div>
+			<label>Search Archive</label>
+			<select id="searchArchive">
+				<option value="Y">Yes</option>
+				<option value="N" selected="selected">No</option>
+			</select>
+		</div>
+		
+		<div id="actionPanel" style="margin-top: 20px; text-align: center;">
+			<button type="button" id="btnSubmit">Submit</button>
+			<button type="button" id="btnClear">Clear</button>
+		</div>
+	</div>
+	
+	<div id="content" class="SearchResults">
+		<table id="tblContent" class="Grid" >
+		</table>
+	</div>
+	
+	<div id="personDetails" class="PersonDetails" style="display: none;">
+		<div>
+			<label>Person ID</label><span class="text" id="pId"></span>
+		</div>
+		<div>
+			<label>Name</label><span class="text" id="pName"></span>
+		</div>
+		<div>
+			<label>Age</label><span class="text" id="pAge"></span>
+		</div>
+		<div>
+			<label>Place</label><span class="text" id="pPlace"></span>
+		</div>
+	</div>
+</body>
+
+</html>

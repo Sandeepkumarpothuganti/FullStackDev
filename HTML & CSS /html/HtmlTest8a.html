@@ -1,0 +1,91 @@
+<html>
+
+<head>
+	<title>CSS</title>
+	
+	<script type="text/javascript">
+		function clickMe(obj) {
+			
+		}
+	</script>
+	
+	<style type="text/css">
+		INPUT {
+			margin: 5px;
+		} 
+		
+		textarea {
+		   font-family: inherit;
+		   font-size: inherit;
+		}
+	
+		input[readonly] {
+			color: rgba(0,0,0, 0.5);
+		}
+		
+	</style>
+	
+</head>
+
+<body >
+	<h1>Forms</h1>
+		
+	<form action="HtmlTest8a.html" method="POST" id="frmGet" onsubmit="alert('Submitting..');" onreset="alert('resetting..')">
+		<!--
+			Input Type:
+				text
+				password
+				file
+				button, submit, reset
+				radio
+				checkbox
+		 -->
+		Textbox: <input type="text" readonly maxlength="10" size="12" name="name" id="name" value="Java" /><br>
+		Hidden: <input type="hidden" name="action" id="action" value="SAVE" /><br>
+		Password: <input type="password" name="password" id="password" value="" /><br>
+		Text Area: 
+			<textarea cols="20"  rows="3">This class is interesting.</textarea>
+		
+		Dropdown:
+			<select id="favoriteColor">
+				<option value="">Please select..</option>
+				<option value="R">Red</option>
+				<option value="B" selected="selected">Blue</option>
+				<option value="G">Green</option>
+			</select>
+				
+		File: <input type="file" name="pic" id="pic" value="" /><br>
+		
+		
+		<br><br>
+		
+		<fieldset style="display: inline-block; padding: 5px 20px;">
+			<legend>Favorite Color</legend>
+			<input type="radio" name="color" value="B" />Blue  
+			<input type="radio" name="color" value="G" />Green
+			<input type="radio" name="color" value="R" />Red
+		</fieldset>
+		
+		<br><br>
+		Checkbox: <input type="checkbox" id="approved" />  
+		
+		<br><br>
+		
+		
+		Input Button: <input type="button" name="ok" id="ok" value="OK" /><br>
+		Submit: <input type="submit" name="submitBtn" id="submitBtn"  value="Submit" /><br>
+		Reset: <input type="reset" name="resetBtn" id="resetBtn" value="Reset" /><br>
+		Button: 
+			<button type="button" onclick="alert('button tag')">
+				<img src="../images/save.png" style="vertical-align: middle;"> Save
+			</button>
+		
+	</form>
+	
+	<form method="POST" id="frmPost">
+	
+	</form>
+	
+</body>
+
+</html>

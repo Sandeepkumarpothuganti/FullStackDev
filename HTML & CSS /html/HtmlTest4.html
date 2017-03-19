@@ -1,0 +1,120 @@
+<html>
+
+<head>
+	<title>HTML Tables</title>
+	
+	<style>
+		table {
+			border-collapse: collapse;
+		}
+		
+		/* header cell */
+		table.Grid  thead th {
+			font-weight: bold;
+			text-align: center;
+			background-color: #4881ea;
+			border: 1px solid gray;
+			color: white;
+			padding: 2px 4px;
+		}
+		
+		/* Data cell */
+		table.Grid td {
+			border: 1px solid gray;
+			padding: 1px 2px;
+		}
+		
+		
+		table.Grid   tbody  td:nth-child(2) {
+			text-align: center;
+		}
+		
+		table.Grid   tbody  td:nth-child(3) {
+			color: blue;
+		}
+		
+		/*
+		table.Grid tbody tr.EvenRow{
+			background-color: #cccccc;
+		}
+		
+		table.Grid tbody tr.OddRow{
+			background-color: #ffffff;
+		}
+		*/
+		
+		/* even row background color */
+		table.Grid tbody tr:nth-child(even){
+			background-color: #cccccc;
+		}
+		
+		/* odd row background color */
+		table.Grid tbody tr:nth-child(odd){
+			background-color: #ffffff ;
+		}
+		
+		/* second row 3rd cell show the dat in red */
+		table.Grid   tbody tr:nth-child(2)  td:nth-child(3) {
+			color: red;
+		}
+		
+		/* header row bottom border highlighting */
+		table.Grid thead tr {
+			border-bottom: 2px solid yellow;
+		}
+		
+		.Center {
+			text-align: center;
+		}
+		
+		.Left {
+			text-align: left;
+		}
+		
+		.Right {
+			text-align: right;
+		}
+	</style>
+		
+</head>
+
+<body >
+	<h1>Tables</h1>
+	
+	<table class="Grid" style="width: 500px; border: 1px solid gray;">
+		<thead>
+			<tr>
+				<th>Company</th>
+				<th>Contact</th>
+				<th>Head Count</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr>
+				<td>Microsoft</td>
+				<td>D'Souza</td>
+				<td class="Right">1,500</td>
+			</tr>
+			<tr>
+				<td>Oracle Corp</td>
+				<td>L Ellisson</td>
+				<td class="Right">2,500</td>
+			</tr>
+			<tr>
+				<td>NextGen</td>
+				<td>Challuri</td>
+				<td class="Right">15</td>
+			</tr>
+			<tr  class="OddRow">
+				<td>Caterpillar</td>
+				<td>Michael</td>
+				<td class="Right">7,920</td>
+			</tr>
+		</tbody>
+		
+	</table>
+	
+</body>
+
+</html>

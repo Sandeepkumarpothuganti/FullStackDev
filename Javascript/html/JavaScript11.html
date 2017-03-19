@@ -1,0 +1,174 @@
+<html>
+
+<head>
+<title>JavaScript</title>
+
+<script type="text/javascript">
+
+	function testArrays() {
+		var values = new Array();
+		for(var i = 1; i < 10; i++) {
+			values.push(i) ;
+		}
+
+		console.log(values);
+
+		//to popup last element from top (this removes the element)
+		console.log("Pop: " + values.pop());
+		console.log("Pop: " + values.pop());
+		console.log(values);
+
+		//to insert an element at a given position use splice(). 
+		//syntax: array.splice(index, removeCount, item1, ....., itemX)
+		//here, the 2nd parameter should be 0 in order to add elements
+		values.splice(5, 0, "Jack", "Jill") ;
+		console.log(values) ;
+
+		//to search for an element in the array, use indexOf()
+		console.log("Do we have  Jack: " + (values.indexOf("Jack") != -1 ? "Yes" : "No")) ;
+		
+		//to remove an element at a given position use splice() also. Here, 2nd parameter represents the # of 
+		//elements to be removed from the given index onwards 
+		values.splice(5, 1) ;
+		console.log(values) ;
+
+		console.log("Do we have  Jack: " + (values.indexOf("Jack") != -1 ? "Yes" : "No")) ;
+		
+		//you can also sort array
+		//remove all
+		values.splice(0, values.length) ;
+		for(var i = 1; i < 10; i++) {
+			values.push(Math.ceil(Math.random()*100)) ;
+		}
+		console.log("Unsorted values: " +values) ;
+
+		//use sort() method, and pass comparator method handler that passes 2 values.
+		values.sort(function(value1, value2) {
+			if(value1 < value2) {
+				return -1;
+			} else if(value1 > value2) {
+				return 1;
+			} else {
+				return 0;
+			}
+		}) ;
+
+		console.log("Sorted values: " +values) ;
+
+		//if you want to concatenate all array values using a delimiter , use join() method. By default comma will be used if you don't pass a delimiter
+		console.log("Delimited values: " + values.join(";")) ;
+
+		// to iterate thru an array use either regular for(var i = 0 ; i < arr.length; i++) loop, or you can use array's forEach()
+		values.forEach(function(currentValue, index, arr) {
+			console.log("value[" + index + "]=" + currentValue + " of " + arr.length);
+		});
+
+		//to default an empty array use fill() method
+		var arr = new Array(5);
+		console.log("New Array:" + arr);
+		arr.fill(0) ;
+		console.log("New Array with Default values:" + arr);
+	} 
+	
+	function testBrowserInfo() {
+		//browser detection
+		var sp = document.getElementById("browserInfo") ;
+		sp.innerHTML = "User Agent: <b>" + navigator.userAgent + "</b><br>" +
+							"Browser App Name: <b>" + navigator.appName + "</b>, Version: <b>" + navigator.appVersion + "</b>";
+	}
+
+	function testWindowPopup() {
+		//window.open(URL, popupName, options);
+
+		var win = window.open("HelloWorld.html", "MyPopup", 
+				"width=500,height=300,left=200,top=100,menubar=no,scrollbars=no,status=no,toolbar=no,resizable=no");
+		win.focus();
+	}
+	
+	function testDialogs() {
+		if(confirm("Are you sure you want to exit?")) {
+			alert("Exiting...");
+		} else {
+			var value = prompt("Please enter your name") ;
+			alert("You've entered: "+ value);
+		}
+	}
+
+	function testImage() {
+		if(confirm("You want to show picture?")) {
+			var img = document.getElementById("myImage");
+			img.src = "../images/Tree.PNG" ;
+		}
+	}
+
+	function testEncodings() {
+		//escape() method converts parameter values to URL parameters 
+		var name = "Brian Bill" ;
+		var exp = "Jack&Jill" ;
+		
+		var url = "HelloWorld.html?" + "name=" + escape(name) + "&brothers=" + escape(exp) ;
+		var win = window.open(url, "MyPopup", 
+				"width=500,height=300,left=200,top=100,menubar=no,scrollbars=no,status=no,toolbar=no,resizable=no");
+		win.focus();
+
+		//if you want to pass a URL as a parameter value then you should use encodeURIComponent() method to encode it 
+		var url2 = "HelloWorld2.html?sourceUrl=" + encodeURIComponent(url) ;
+		var win2 = window.open(url2, "MyPopup", 
+				"width=1000,height=400,left=200,top=100,menubar=no,scrollbars=no,status=no,toolbar=no,resizable=no");
+		win2.focus();
+	}
+
+	function testTimer() {
+		//the timeout period is in milli-seconds
+		window.setTimeout(timeOut.bind(this, "loadTime"),  2000) ;
+
+		//now for every 1 second update the time continuously
+		window.setInterval(timeOut.bind(this, "curTime"),  1000) ;
+	}
+
+	function timeOut(elId) {
+		var dt = new Date() ;
+		document.getElementById(elId).innerHTML = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds() ;
+	}
+
+	function testRedirect() {
+		if(confirm("You want to open in a new tab?")) {
+			//document.createElement(elementType) ; here "a" refers to anchor element
+			var a = document.createElement("a");
+			a.target = "_blank" ;
+			a.href = "HelloWorld.html" ;
+
+			//now invoke the hyperlink
+			a.click() ;
+		} else {
+			location.href = "HelloWorld.html" ;
+		}
+	}
+	
+	function init() {
+		//programmatically invoking a button click
+		if(false) {
+			 document.getElementById("btnRedirect").click();
+		}
+	}
+	
+	
+</script>
+
+</head>
+
+<body onload="init()">
+	<h1>JavaScript fundamentals</h1>
+	
+	<span id="browserInfo"></span>
+	<br>
+	<img id="myImage">
+	<br>
+	Loaded at: <span id="loadTime"></span>
+	<br>
+	Current Time: <span id="curTime"></span>
+	<br><br><br>
+	<button type="button" onclick="testRedirect()" id="btnRedirect">Redirect</button>
+</body>
+
+</html>

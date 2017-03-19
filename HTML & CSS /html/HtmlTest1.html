@@ -1,0 +1,226 @@
+<html>
+
+<head>
+	<title>HTML Workout</title>
+	
+	<link rel="stylesheet" href="../css/app.css" />
+	
+	<script type="text/javascript">
+		/**
+		* This method gets invoked as part of onload method, all initialization can be done here.
+		*/
+		function init() {
+			
+		}
+
+		function openPopup() {
+			var popup = document.getElementById("dvPopup") ;
+			var mask = document.getElementById("maskFrame") ;
+			
+			//<object>.style.<property in camel case, no hyphens> = "<property value>";
+			
+			if(popup.style.display == "none") {
+				var popupWidth = 300;
+				var popupHeight = 200 ;
+
+				var x = (window.innerWidth - popupWidth)/2 ;
+				var y = (window.innerHeight - popupHeight)/2 ;
+				
+				popup.style.width = popupWidth + "px" ;
+				popup.style.height = popupHeight + "px" ;
+				popup.style.left = x + "px" ;
+				popup.style.top = y + "px" ;
+				
+				popup.style.display = "block" ;
+				mask.style.display = "block" ;
+
+				var zidx = 100;
+				popup.style.zIndex = zidx + 1; 
+				mask.style.zIndex = zidx;
+			} else {
+				popup.style.display = "none" ;
+				mask.style.display = "none" ;
+			}
+		}
+		
+		function clickMeAnother(name, id) {
+			window.open("HelloWorld.html", "newPage");
+
+			/*
+			for(var i = 0; i < arguments.length; i++) {
+				alert("Arg[" + i + "]: " + arguments[i]) ;
+			}
+			
+			var a = new Date();
+
+			
+			if(typeof(name) == "undefined") {
+				alert("Now the time is: " + a);
+			} else{
+				alert("Clicked by '" + name + "'. Now the time is: " + a);
+			}
+			*/
+		}
+
+		function form1Submit(frm) {
+			var fn = frm["firstName"] ;
+
+			alert(fn.value) ;
+		}
+
+		function saveClick() {
+			alert(document.getElementById("frm1")["lastName"].value);
+		}
+
+	</script>
+	
+	<style type="text/css">
+		.Popup {
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			background-color: white;
+			border: 1px solid black;
+		}
+		
+		.MaskFrame {
+			background-color: #cccccc; 
+			opacity: 0.8; 
+			position: absolute; 
+			left: 0; 
+			top: 0; 
+			width: 100%; 
+			height: 100%;
+		}
+		
+		.ImportantText {
+			background-color: #B0E0E6;
+			font-style: normal;
+		}
+		
+		.oldPrice {
+			text-decoration: line-through;
+		}
+		
+		.newPrice {
+			font-weight: bold;
+			text-decoration: underline;
+		}
+		
+		button>img,button>span {
+			vertical-align: middle;
+		}
+		
+		.ColorGroup {
+			margin-top: 10px;
+			margin-bottom: 10px;
+			border: 1px solid gray;
+			width: 200px;
+			box-sizing: border-box;
+			padding: 3px;
+		}
+		
+		.MyGroup {
+			margin-left: 10px;
+			font-style: italic;
+		}
+		
+		.MyGroupTitle {
+			font-weight: bold;
+		}
+		
+		.demoClass {
+			font-family: verdana;
+			font-size: 1.1em;
+			color: green;
+		}
+		
+		H1 {
+			color: red;
+		}
+</style>
+	
+	<link rel="stylesheet" href="app.css">
+</head>
+
+<body onload="init()" >
+	<h1 id="header1" > Hurray, this is my first html page.</h1>
+	
+	<div style="text-align: left;">
+		This is a <span class="demoClass"> demo page</span>, we're showing different aspects of HTML. Please <a href="http://www.w3schools.com/tags/tag_style.asp" target="_blank">click here</a> to learn more.
+		Price of my item is <span class="newPrice">$10.50</span> <span class="oldPrice">$8.25</span>
+	</div>
+	
+	<div class="ColorGroup">
+		<div class="MyGroupTitle">
+			My Favorite Colors
+		</div>
+		
+		<div class="MyGroup">	
+			<div>
+				1. Red 
+			</div>
+			
+			<div>
+				2. Blue 
+			</div>
+			
+			<div>
+				3. Green 
+			</div>
+		</div>
+	</div>
+	
+	<iframe src="HelloWorld.html" style="border: 0;"></iframe>
+	
+	
+	<br>
+	
+	<img src="../images/Tree.PNG" style="width: 500px; height: 300px;" alt="Tree" border="1px" title="Picture of the Day" />
+	
+	<br>
+	
+	<form name="frm1" id="frm1" onsubmit="form1Submit(this)">
+		<fieldset style="width: 300px;">
+			 <legend>Login:</legend>
+			 
+			 <div style="margin-bottom: 10px;">
+				 <label>First name:</label>
+				 <input title="Please enter first name" class="ImportantText" id="firstNameId" type="text" name="firstName" value="Shalini">
+			 </div>
+			 
+			 
+			 <label>Last name:</label>
+			 <input type="text"  name="lastName" style="font-style: italic;" value="Mahesh">
+			 <br><br>
+			 
+			 <input type="submit" value="Submit">
+			 <button onclick="saveClick()"><img src="../images/save.png" alt="Save" /><span>Save</span></button>
+			 
+			 <input type="button" onclick="openPopup()" title="Just click me" value="Popup">
+	  	</fieldset>
+	</form>
+	
+	<div id="dvPopup" style="display: none;" class="Popup">
+		<div style="background: linear-gradient(white, gray); font-weight: bold; padding: 5px;">
+			Popup Window
+		</div>
+		
+		<div style="padding: 5px;">
+			<h4>Weather Report</h4>
+			
+			<p>
+				Today's weather looks great. 
+			</p>
+			
+			<div style="text-align: center; position: absolute; bottom: 10px; width: 100%;" >
+				<input type="button" value="Close" onclick="openPopup()">
+			</div> 
+		</div>
+	</div>
+	
+	<iframe id="maskFrame" style="display: none;" class="MaskFrame"></iframe>
+	
+</body>
+
+</html>

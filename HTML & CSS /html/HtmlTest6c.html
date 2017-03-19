@@ -1,0 +1,258 @@
+<html>
+
+<head>
+	<title>HTML Lists</title>
+	
+	<style>
+		.Center {
+			text-align: center;
+		}
+		
+		.Left {
+			text-align: left;
+		}
+		
+		.Right {
+			text-align: right;
+		}
+		
+		ul,ol {
+			margin: 5px 0;
+		}
+		
+		ol.ListStyle {
+			/* possible values are: decimal, upper-alpha, lower-alpha, upper-roman, lower-roman */
+			list-style-type: upper-alpha;
+		}
+		
+		ul.BulletStyle {
+			/* possible values are : square, circle, disc, none */
+			list-style-type: square;
+		}
+		
+		ul.NutStyle {
+			list-style-image: url(../images/Star.png);
+		}
+		
+		/* to query for all immediate children use ">" rather than space "*/
+		#regList > li > label {
+			display: inline-block;
+			width: 125px;
+			font-weight: bold;
+		}
+		
+		/* Vertical spacing between list items */
+		#regList  li+li {
+			margin-top: 5px;
+		}
+		
+		ul#regList {
+			list-style-type: none;
+			margin: 5px 0px;
+			padding-left: 10px;
+		}
+		
+		/* to add a specific content right after each label use the following ":after" selector */
+		#regList label:after {
+			content: ":";
+		}
+		
+		ul#footer {
+			position: fixed; /* to stick it at the bottom of the page even if you scroll down*/
+			left: 0px;
+			right: 0px;
+			bottom: 0px;
+			max-width: 400px;
+			min-width: 400px;
+			margin: auto;
+			
+			list-style-type: none; 
+			padding-left: 0;
+			text-align: center;
+			
+			/* 
+				The setting rgba will apply RGB color values with Alpha filter, which is equivalent to opacity property but only to the background color.
+				We are using this background alpha because we want to see-through the other elements as we scroll the page. 
+			*/
+			
+			background-color: rgba(100, 100, 0, 0.5);
+		}
+		
+		ul#footer > li {
+			display: inline;
+		}
+		
+		ul#footer > li + li {
+			padding-left: 50px;
+		}
+		
+		ul#menu {
+			list-style-type: none;
+			padding-left: 0;
+			border: 1px solid gray;
+			
+			margin-bottom: 50px;
+			background-color: #4d4d4d;
+			color: white;
+		}
+		
+		ul#menu, 
+		ul#menu > li {
+			height: 25px;
+			line-height: 25px;
+		}
+		
+		ul#menu > li {
+			/* 
+			 float: used to layour block elements horizontally, this will collapse any white spaces. 
+			 Other alternative is display:inline, but it seems to have some white spacing between elements 
+			*/
+			float: left; 
+			padding: 0px 20px;
+			margin: 0;
+			cursor: pointer;
+		}
+		
+		
+		ul#menu > li:hover {
+			background-color: gray;
+			color: white;
+		}
+		
+		ul#menu > li > a{
+			color: white;
+			text-decoration: none;
+		}
+		
+		/* between each menu option have border */
+		ul#menu > li + li {
+			border-left: 1px solid gray;
+		}
+		
+		.SearchOpts {
+			position: absolute;
+			display: none;
+			background-color: gray;
+			margin: 0;
+			padding: 0;
+			list-style-type: none;
+			box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.6);
+		}
+		
+		.SearchOpts > li {
+			padding: 5px;
+		}
+		
+		.SearchOpts > li:hover {
+			background-color: orange;
+			color: black;
+		}
+		
+		.SearchOpts > li > a {
+			color: white;
+			text-decoration: none;
+		}
+		
+		.SearchOpts > li + li {
+			border-top: 1px solid white;
+		}
+		
+		.SearchMenu:hover .SearchOpts {
+			display: block;
+		}
+</style>
+		
+</head>
+
+<body >
+	<div>
+		<ul id="menu">
+			<li><a href="#nuts">Products</a></li>
+			<li><a href="#">Most Popular</a></li>
+			<li class="SearchMenu" style="padding-left: 0px">
+				<a href="#" style="padding-left: 20px;">Search</a>
+				
+				<ul class="SearchOpts" >
+					<li><a href="#">By Item Number</a></li>
+					<li><a href="#">By Description</a></li>
+					<li><a href="#">By Model Number</a></li>
+				</ul>
+			</li>
+			<li><a href="#">Buy</a></li>
+		</ul>
+	</div>
+	
+	<h1>Lists</h1>
+	
+	<!-- To center align a block element such as DIV use "margin:auto". Whereas the "text-align: center"  will only aligns its content text but not the DIV box itself -->
+	<div style="margin: auto; border: 1px solid gray; width: 150px;">
+		Is this center aligned.
+	</div>
+	
+	<br>
+	
+	<!-- max-width will make sure that the content will wrap when the browser is resized horizontally below the width of the below DIV
+		whereas the "width" setting will not make it wrap instead will cause the horizontal scrollbar .
+		
+		min-width: makes sure that the content will wrap as long as the width is above 400px, when it falls below 400px then it wont wrap any longer instead
+		will show the horizontal scrollbar.
+	 -->
+	<div style="border: 1px solid gray; max-width: 800px; min-width: 400px;">
+		Is this center aligned. This is a long text should it wrap or stand stiff. This showcases min-width and max-width.
+	</div>
+	
+	<h3>Fruits</h3>
+	<ul class="BulletStyle">
+		<li>Apple</li>
+		<li>Orange</li>
+		<li>Grapes</li>
+	</ul>
+	
+	<h3>Vegetables</h3>
+	<ol class="ListStyle">
+		<li>Broccoli</li>
+		<li>Cilery</li>
+		<li>Avacado</li>
+	</ol>
+	
+	<h3><a name="nuts">Nuts</a></h3>
+	<ul class="NutStyle">
+		<li>Peanut</li>
+		<li>Almonds</li>
+		<li>Cashews</li>
+	</ul>
+	
+	<h3>Registration</h3>
+	<form id="regForm">
+		<ul id="regList">
+			<li>
+				<label>First Name</label>
+				<input type="text" name="firstName" id="firstName">
+			</li>
+			
+			<li>
+				<label>Last Name</label>
+				<input type="text" name="lastName" id="lastName">
+			</li>
+			
+			<li>
+				<label>Contact Number</label>
+				<input type="text" name="phone" id="phone	">
+			</li>
+		</ul>
+	</form>
+	
+	<br>
+	
+	<input type="button" value="Submit" style="width: 100px; border-radius: 5px;"/>
+	
+	<div style="padding-top: 50px;">
+		<ul id="footer">
+			<li><a href="javascript: void">Contact Us</a></li>
+			<li><a href="javascript: void">Order Tracking</a></li>
+			<li><a href="javascript: void">FAQ</a></li>
+		</ul>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<html>
+
+<head>
+	<title>CSS</title>
+	
+	<script type="text/javascript">
+		function clickMe(id) {
+			var obj = null;
+			
+			if(window.event) {
+				obj = window.event.srcElement ;
+			} else if(id) {
+				obj = document.getElementById(id) ;
+			}
+
+			alert(obj.nodeName) ;	
+		}
+	</script>
+	
+	<style type="text/css">
+		.btn {
+			background-color: #4CAF50;
+			text-decoration: none;
+			color: white;
+			padding: 10px 15px;
+			cursor: pointer;
+		}
+		
+		.btn:hover {
+			background-color: #4CAA00;
+			box-shadow: 0 5px 5px 0 rgba(0,0,0, 0.2);
+		}
+	</style>
+	
+</head>
+
+<body >
+	<h1>CSS</h1>
+	
+	<div style="width: 343px;  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);">
+		<div>
+			<img src="../images/scene3.PNG" >
+		</div>
+		
+		<div style="text-align: center; padding: 5px;">
+			This is a beautiful picture. Please click the image to open the full picture.
+		</div>
+	</div>
+	
+	<br><br>
+	
+	<a id="abtn" class="btn" href="javascript: clickMe('abtn')">Anchor Button</a>
+	
+	<a id="abtnImage" class="btn" href="javascript: clickMe('abtn')">
+		<img src="../images/save.png" style="vertical-align: middle;"> Anchor Button
+	</a>
+	<input type="button" value="Input Button" class="btn" onclick="clickMe()">
+	
+</body>
+
+</html>

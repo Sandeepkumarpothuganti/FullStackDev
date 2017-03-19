@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>CSS Overflow</title>
+
+<meta charset="UTF-8" />
+
+<style>
+	#ActionButtons  button + button {
+		margin-left: 10px;
+	}
+</style>
+
+</head>
+
+<body>
+
+	<h1>Overflow Setting</h1>
+
+	<div style="height: 200px; overflow-y: auto; background-color: #cccccc; padding: 5px; width: 300px;">
+		A thought or collection of thoughts that generate in the mind. An idea
+		is usually generated with intent, but can also be created
+		unintentionally. Ideas often form during brainstorming sessions or
+		through discussions. An impression or notion that tries to portray the
+		overarching scope or outline.
+		<br><br>
+		A thought or collection of thoughts that generate in the mind. An idea
+		is usually generated with intent, but can also be created
+		unintentionally. Ideas often form during brainstorming sessions or
+		through discussions. An impression or notion that tries to portray the
+		overarching scope or outline.
+	</div>
+
+	<br><br><br><br>
+	
+	<!-- 
+		Since the children are using float properties the container's height will not be auto resized. to fix this
+		we applied "overflow: auto" to auto-expand the container box.
+	-->
+	<div style="background-color: #cccccc; border: 1px solid gray; overflow: auto;">
+			<!-- the text is displayed on left of the parent box using "float: left"  -->
+			<div style="float: left;">A thought or collection of thoughts that generate in the mind.</div>
+			
+			<!-- the image is displayed on right of the parent box using "float: right" --> 
+			<div style="float: right;"><img src="../images/scene1.PNG" style="width: 100px; height: 100px;"></div>
+	</div>
+	
+	<br><br><br><br>
+	<div>
+		<div style="float: left; background-color: green;">Left Box	</div>
+		<div style="float: right; background-color: green;">Right Box</div>
+	</div>
+	<div style="clear: both; background-color: yellow;">
+		Another Box down.
+	</div>
+	
+	<br><br><br><br>
+	
+	<div style="background-color: #cccccc; overflow: auto; position: relative;">
+		<div style="float: left; "><button type="button">Previous</button></div>
+		<div style="position: absolute; left: 50%; transform: translate(-50%, 0%)">
+			<div id="ActionButtons">
+				<button type="button" style="width: 150px;">Go</button>
+				<button type="button" style="width: 100px; ">Clear</button>
+			</div>
+		</div>
+		<div style="float: right; "><button type="button">Next</button></div>
+	</div>
+	
+	<br><br>
+</body>
+
+</html>

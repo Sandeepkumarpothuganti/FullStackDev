@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>CSS Settings</title>
+
+<meta charset="UTF-8" />
+
+<style>
+	BODY {
+		background-color: white;
+	}
+	
+	
+	INPUT {
+			background-color: yellow;
+	}
+	
+	.TextClass {
+			background-color: gray;
+	}
+
+	
+	INPUT[type=text] {
+			background-color: blue;
+	}
+	
+	#name {
+		background-color: green;
+	}
+	
+</style>
+
+
+<script type="text/javascript">
+</script>
+
+</head>
+
+<body >
+
+	<h3>Box Model</h3>
+
+	<ul>
+		<li>Content width is the min. width occupied by the content, here the text "Five Continents"</li>
+		<li>Padding is the space between space between orange content box and red border inner edge</li>
+		<li>Margin of the yellow box is the area between red border and black border.</li>
+		<li>Background color id applied only up to the border but not up to the margin</li>
+	</ul>
+	
+	<span style="display: inline-block; padding: 50px 0; border: 1px solid black;">
+		<span id="targetBox" style="border: 2px solid red; padding: 10px; margin: 15px; background-color:  yellow; ">
+			<span style="background-color: orange;">Five Continents</span>
+		</span>
+	</span>
+	<br><br>
+	
+	<div>
+		Another Line here
+	</div>
+	
+	<br>
+	<input id="name" type="text" size="10" class="TextClass" style="background-color: white;"/>
+	
+	<br><br>
+	
+	<div style="background-color: yellow">
+		<div style="border: 1px solid black; padding: 10px 50px;">What is my background?</div>
+	</div>
+	
+	<br><br>
+	<span style="border: 1px solid red; height: 30px; display: inline-block;">
+		Hello there, am I block or inline?
+	</span> Next word.
+	
+	<br><br>
+	
+	<!-- Constructing a TABLE using DIV tags with "display" values that goven the TABLE and its children elements -->
+	<div style="border: 1px solid blue; display: table; ">
+		<div style="display: table-row; ">
+			<div style="display: table-cell; padding: 5px;  border: 1px solid gray;">Row1-Column1</div>
+			<div style="display: table-cell; padding: 5px;  border: 1px solid gray;">Row1-Column2</div>
+		</div>
+		<div style="display: table-row;">
+			<div style="display: table-cell; padding: 5px;  border: 1px solid gray;">Row2-Column1</div>
+			<div style="display: table-cell; padding: 5px;  border: 1px solid gray;">Row2-Column2</div>
+		</div>
+	</div>
+	
+</body>
+
+</html>

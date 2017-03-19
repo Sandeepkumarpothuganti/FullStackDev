@@ -1,0 +1,70 @@
+<html>
+
+<head>
+<title>JavaScript</title>
+	
+<script type="text/javascript">
+	
+	
+	var Controller = {
+		value: null,
+
+		generateRandom: function() {
+			this.value = Math.round(Math.random() * 100) ;
+		},
+
+		echoRandom: function() {
+			alert("Random Value(1): " + this.value) ;
+		},
+		
+		echoText: function(randomValue) {
+			alert("Random Value(2): " + randomValue + ", Textbox Value: " + this.value) ;
+		},
+
+		register: function() {
+			var textBox = document.getElementById("clickMe");
+
+			//here "this" represents the "Controller" object. and this.value represents the random value
+			
+			//in order to pass a argument to the function with a value available at this time then use "Function.prototype.bind()" method
+			//format : bind(scope, param1, param2, param3,.....). Where scope represents the object context
+			var randValue = this.value;
+			textBox.addEventListener("click", this.echoText.bind(textBox, randValue)) ;
+
+			//instead, if you wanted to change the "this" reference to the current Controller object reference then you can pass "scope" parameter as "this"
+			//here when you double click on the textbox the echoText method's this.value represents the Controller object's "this.value" rather than the textbox's this.value.
+			textBox.addEventListener("change", this.echoText.bind(this, randValue)) ;
+		}
+	} ; 
+
+	function skillHandler() {
+		alert("Skill: " + this.value) ;
+	}
+	
+	function init() {
+		var skillBox = document.getElementById("skill");
+		skillBox.addEventListener("click", skillHandler) ;
+
+		//the following will alert undefined
+		skillHandler();
+		
+		Controller.generateRandom();
+		Controller.echoRandom();
+		Controller.register();
+
+		//now click on the textbox
+	}
+	
+</script>
+	
+</head>
+
+<body onload="init()">
+	<h1>JavaScript fundamentals</h1>
+	
+	<input type="text" id="clickMe"  value="Ryan">
+	<input type="text" id="skill"  value="Java">
+		
+</body>
+
+</html>

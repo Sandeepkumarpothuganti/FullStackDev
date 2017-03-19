@@ -1,0 +1,214 @@
+<html>
+
+<head>
+<title>JavaScript</title>
+	
+<script type="text/javascript">
+
+	function init() {
+		var a = "1" ;
+
+		//will be true
+		if(a == 1) {
+			alert("value 1") ;
+		} else {
+			alert("value not 1") ;
+		}
+
+
+		//will be false: to check without any data type conversion, use === operator
+		if(a === 1) {
+			alert("value 1") ;
+		} else {
+			alert("value not 1") ;
+		}
+	}
+	
+	function testChecks() {
+		var a = 11;
+
+		//terinary operator: booleanExpression ? TrueValueResult : FalseValueResult
+		var b = (a %2 == 0) ? "Even" : "Odd" ;
+		alert(b);
+
+		//checking for a valid value
+		//there are various ways
+		var x ;
+
+		try {
+			//this will be evaluted to true
+			if(x == null) {
+				alert("no value") ;
+			}
+		} catch(ex) {
+			alert(ex.message);
+		}
+
+		//this also will be evaluted to true
+		if(typeof x == "undefined" ) {
+			alert("not defined") ;
+		}
+
+		try {
+			//the following will throw error since it's not yet defined, and you're trying to read the value
+			if(nonExistant == null) {
+				alert("nonExistant - no value") ;
+			}
+		} catch(ex) {
+			alert("catch: " + ex.message);
+		}
+
+		try {
+			//the right way to check is using typeof(), this will be evaluted to true
+			if(typeof(nonExistant) == "undefined") {
+				alert("nonExistant - Missing Data") ;
+			}
+		} catch(ex) {
+			alert("catch: " + ex.message);
+		}
+		
+
+		/*
+		* a) if you want to check for a existance of a variable then you should always use typeof() operator and no other checking will work (other checks will result in error)
+		* 
+		*   if(typeof(value) == "undefined") {
+				alert("missing") ;
+		*	}
+		* b) if the value is : defined but not initialized, null, false, zero, empty string (not space)
+		*		if(!value) {
+		*			alert("missing") ;
+		*		}
+		*/
+		
+		var nExist ;
+
+		//the following will be evaluted to true
+		if(!nExist) {
+			alert("nExist (not initialized) - missing1");
+		}
+
+		
+		//the following will be evaluted to true (missing)
+		nExist = false ;
+		if(!nExist) {
+			alert("nExist(False) - missing");
+		} else {
+			alert("nExist(False) - has Value") ;
+		}
+
+		//the following will be evaluted to tru(missing)
+		nExist = 0;  //0.0 also behaves same
+		if(!nExist) {
+			alert("nExist(0) - missing");
+		} else {
+			alert("nExist(0) - has Value") ;
+		}
+
+		//the following will be evaluted to false (has Value)
+		nExist = 1 ;
+		if(!nExist) {
+			alert("nExist(1) - missing");
+		} else {
+			alert("nExist(1) - has Value") ;
+		}
+
+		//the following will be evaluted to true(missing)
+		nExist = "" ;  //empty string
+		if(!nExist) {
+			alert("nExist(empty string) - missing");
+		} else {
+			alert("nExist(empty string) - has Value") ;
+		}
+
+		//the following will be evaluted to false(has value)
+		nExist = " " ;  //blank space
+		if(!nExist) {
+			alert("nExist(a space) - missing");
+		} else {
+			alert("nExist(a space) - has Value") ;
+		}
+		
+	}
+	
+	function testAdditions() {
+		var t = false ;
+		var u = 10;
+
+		//value will be 10 since false is considered as 0
+		t = t + u;
+		alert(t) ;
+
+		//value will be 11 since true is considered as 1
+		t = true;
+		t = t + u;
+		alert(t) ;
+		
+		var age = 20;
+		var name = "0" ;
+
+		// value will be "020"
+		var c = name + age ;
+		alert(c) ;
+
+		// value will be "200"		
+		var d = age + name ;
+		alert(d) ;
+
+		name = 0;
+		//value will be 20
+		var e = age + name;
+		alert(e) ;
+
+		
+		age = "20" ;
+		name = "0";
+		//value will be 200
+		var f = age + name;
+		alert(f) ;
+	
+		var x = 20;
+		var y = 5 ;
+		var z = "6" ;
+
+		//value will be 256
+		var aa = x + y + z;
+		alert(aa) ;
+
+		//value will be 2065
+		var bb = x + z + y ;
+		alert(bb);
+
+		//if you want to add all as numeric values then explicitly convert into number
+		var cc = x + parseFloat(z) + y;
+		alert(cc) ;
+	
+		var xx = "6a" ;
+
+		/*
+			parseInt/parseFloat: if first character represents a digit then it takes all the consecutive characters until last digit found and ignores the rest.
+			if first character is not a digit then it returns NaN.
+		*/
+		
+		//the value will be 6 
+		xx = parseInt(xx) ;
+		alert(xx) ;
+
+		xx = "a6" ;
+		//the value will be 
+		xx = parseFloat(xx) ;
+
+		if(isNaN(xx)) {
+			alert("Please enter a valid number") ;
+		}
+	}
+	
+</script>
+	
+</head>
+
+<body onload="init()">
+	<h1>JavaScript fundamentals</h1>
+	
+</body>
+
+</html>

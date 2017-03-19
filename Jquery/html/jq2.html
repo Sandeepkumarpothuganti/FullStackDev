@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>JQuery Basics</title>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<script>
+	$(document).ready(function() {
+		var params = {};
+
+		$.get("/WebUI/data/config.json",  function(data, status, xhr) {
+			if(status == "success") {
+				var json = eval("(" + data + ")") ;
+				console.log(json.app) ;
+			} else {
+				console.log("Failed") ;
+			}
+		});
+		
+		$("#data").load("/WebUI/data/config.json");
+
+		/*
+		$.getJSON("/WebUI/AppCont?action=Config", function(data) {
+			console.log("AppVersion: " + data.Version) ;
+		});
+		*/
+		
+		$.getJSON("/WebUI/data/config.json", function(json) {
+			console.log(json) ;
+		});
+		
+	});
+</script>
+</head>
+
+<body>
+
+	<h1>Changing Weather</h1>
+
+	<p id="data">
+	</p>
+</body>
+
+</html>

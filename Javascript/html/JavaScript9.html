@@ -1,0 +1,89 @@
+<html>
+
+<head>
+<title>JavaScript</title>
+	
+<script type="text/javascript">
+
+	/**
+	 * Static definition of a class
+	 */
+	function Person(name) {
+		this.name = name ;
+		
+		this.sayName = function() {
+			alert("My Name is: " + this.name) ;
+		};
+	}
+
+	/**
+	* Dynamic class definition
+	*/
+	function createCarClass() {
+
+		//start with empty function and then add Function.prototype methods/properties. 
+		//so the Function.prototype represents methods and properties that all its class instances share
+		var Car = function() {
+		} ;
+
+		Car.prototype.name = null; //this is optional
+		Car.prototype.sayName = function() {
+			alert(this.name) ;
+		}; 
+
+		return Car ;
+	}
+
+	function createAnimalClass() {
+
+		//start with empty function and then add Function.prototype methods/properties. 
+		//so the Function.prototype represents methods and properties that all its class instances share
+		var Animal = function() {
+		} ;
+
+		//the prototype can simply represent a JSON formatted object itself
+		Animal.prototype = {
+				name: null,
+				sayName: function() {
+					alert(this.name) ;
+				}
+		};
+
+		return Animal ;
+	}
+	
+	function init() {
+		var p = new Person("Jill") ;
+		p.sayName();
+		
+		//alternatively you can create a class on the fly as follows
+
+
+		var Car = createCarClass();
+
+		var car = new Car();
+		car.name = "Jaguar" ;
+		car.sayName();
+
+		var Animal = createAnimalClass() ;
+		var dog = new Animal() ;
+		dog.name = "Tommy" ;
+		dog.sayName();
+
+		var cat = new Animal() ;
+		cat.sayName();
+		dog.sayName();
+	}
+	
+</script>
+	
+</head>
+
+<body onload="init()">
+	<h1>JavaScript fundamentals</h1>
+	
+	<input type="text" id="clickMe"  value="Ryan">
+		
+</body>
+
+</html>

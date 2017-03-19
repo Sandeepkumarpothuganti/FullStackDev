@@ -1,0 +1,45 @@
+<html>
+
+<head>
+<title>JavaScript</title>
+
+<script type="text/javascript">
+
+	//dynamic evaluation of an expression
+	var ctr = 10;
+	function buildOperation(opern) {
+		//ctr += 2; or ctr *= 2;
+		eval("ctr " + opern + "= 2;");
+	}
+	
+	function testEval() {
+		buildOperation("+") ;
+		alert(ctr);
+
+		buildOperation("*") ;
+		alert(ctr);
+	}
+
+	function init() {
+		var data = "{name: 'Jack', age: 25, place: 'NC'}" ;
+
+		eval("var person = " + data) ;
+		
+		alert(person.name + "; " + person.age + "; " + person.place);
+
+		eval("alert('age is ' +person.age)") ;
+	}
+	
+	
+</script>
+
+</head>
+
+<body onload="init()">
+	<h1>JavaScript fundamentals</h1>
+	
+	<input type="text" id="clickMe"  value="Ryan">
+		
+</body>
+
+</html>
